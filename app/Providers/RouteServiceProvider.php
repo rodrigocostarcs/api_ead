@@ -38,14 +38,13 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
+            Route::middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+            // Route::middleware('web') - Comenta para não trabalhar com rotas normais, somente usar as API. Neste caso posso apagar o arquivo web.php
+            //     ->namespace($this->namespace)
+            //     ->group(base_path('routes/web.php'));
         });
     }
 
